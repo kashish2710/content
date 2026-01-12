@@ -47,6 +47,17 @@ background:
   padding: 10%;
 }
 ```
+## Background propagation from `body` to `html`
+
+For HTML documents, the background of the canvas is not always taken directly from the root (`html`) element.
+
+According to the CSS specification, if the computed value of `background-image` on the root element is `none` and its `background-color` is `transparent`, user agents must instead propagate the computed background values from the document’s `body` element. These propagated values are then treated as if they were specified on the root element.
+
+In practice, this means that a background specified on the `body` element may visually appear as the background of the entire page, even when the `html` element itself has no explicit background defined.
+
+For this reason, the specification recommends that authors specify the canvas background on the `body` element rather than the `html` element.
+
+Although this behavior originated in early browser implementations, it remains relevant today. Modern browsers increasingly provide features such as forced dark mode or automatic color scheme transformations, which may interact with background propagation rules in unexpected ways. Web developers should be aware of this behavior when defining page backgrounds, especially when relying on default or transparent background values.
 
 ## Constituent properties
 
